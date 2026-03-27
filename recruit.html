@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LSPD | Recruitment Center</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Kanit', sans-serif; background: radial-gradient(circle, #0f172a 0%, #020617 100%); }
+        .glass-panel { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(16, 185, 129, 0.2); }
+        .glow-emerald { text-shadow: 0 0 10px rgba(16, 185, 129, 0.5); }
+        .input-style { background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(71, 85, 105, 0.5); transition: all 0.3s; }
+        .input-style:focus { border-color: #10b981; box-shadow: 0 0 15px rgba(16, 185, 129, 0.2); outline: none; }
+        .discord-btn { background-color: #5865F2; transition: all 0.3s; }
+        .discord-btn:hover { background-color: #4752C4; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(88, 101, 242, 0.4); }
+    </style>
+</head>
+<body class="text-slate-200 min-h-screen p-6 flex flex-col items-center">
+
+    <div class="max-w-4xl w-full py-10">
+        <header class="flex flex-col md:flex-row justify-between items-end mb-10 gap-6 border-b border-slate-800 pb-8">
+            <div>
+                <h1 class="text-4xl font-black text-emerald-500 italic glow-emerald tracking-tighter uppercase">Recruitment Center</h1>
+                <p class="text-slate-500 text-xs uppercase tracking-[0.3em] mt-1">LSPD Human Resources Department</p>
+            </div>
+            <a href="index.html" class="bg-slate-800 hover:bg-slate-700 text-white px-6 py-3 rounded-2xl text-sm transition-all border border-slate-700 flex items-center gap-2 active:scale-95 shadow-lg">
+                🏠 กลับหน้าหลัก
+            </a>
+        </header>
+
+        <div class="glass-panel p-8 rounded-3xl shadow-2xl mb-8 relative overflow-hidden border-l-4 border-l-emerald-600">
+            <div class="absolute -top-24 -right-24 w-48 h-48 bg-emerald-600/10 rounded-full blur-3xl"></div>
+            
+            <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-8">
+                <div class="space-y-5">
+                    <div>
+                        <h2 class="text-2xl font-bold text-white flex items-center gap-3">📢 สถานะการเปิดรับสมัคร</h2>
+                        <p class="text-slate-400 text-sm leading-relaxed font-light mt-1">
+                            เรากำลังมองหาผู้มีความสามารถเข้าร่วมทีม LSPD <span class="text-emerald-400 font-semibold">"เพื่อรับใช้และปกป้อง"</span> ยื่นใบสมัครออนไลน์ได้ทันที
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-3">
+                        <a href="https://discord.gg/KQy37unn4g" target="_blank" class="discord-btn text-white px-6 py-3 rounded-xl text-sm font-bold flex items-center gap-2 active:scale-95">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037 19.736 19.736 0 0 0-4.885 1.515.069.069 0 0 0-.032.027C.533 9.048-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.086 2.157 2.419 0 1.334-.947 2.419-2.157 2.419zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.086 2.157 2.419 0 1.334-.946 2.419-2.157 2.419z"/></svg>
+                            เข้าร่วม Discord หน่วยงาน
+                        </a>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3 bg-emerald-950/50 border border-emerald-900 px-6 py-3 rounded-full shadow-inner flex-shrink-0">
+                    <span class="relative flex h-3 w-3">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+                    </span>
+                    <span class="text-emerald-400 font-bold tracking-widest text-sm uppercase glow-emerald">Open for Application</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="glass-panel p-8 rounded-3xl shadow-2xl mb-12 relative overflow-hidden">
+            <div class="absolute -bottom-24 -left-24 w-48 h-48 bg-slate-600/10 rounded-full blur-3xl"></div>
+            <div class="relative z-10 space-y-5">
+                <h2 class="text-2xl font-bold text-white flex items-center gap-3">📋 คุณสมบัติผู้สมัคร (Requirements)</h2>
+                <ul class="text-sm text-slate-400 space-y-4 font-light grid grid-cols-1 md:grid-cols-2 gap-x-8">
+                    <li class="flex gap-3 items-center"><span class="text-emerald-500 font-bold text-xl">✓</span> <span>อายุ 18 ปีขึ้นไป (OOC)</span></li>
+                    <li class="flex gap-3 items-center"><span class="text-emerald-500 font-bold text-xl">✓</span> <span class="text-emerald-400 font-semibold underline">ไม่มีประวัติอาชญากรรมร้ายแรงในรอบ 30 วัน</span></li>
+                    <li class="flex gap-3 items-center"><span class="text-emerald-500 font-bold text-xl">✓</span> <span>มีทัศนคติที่ดี มีอุดมการณ์ และความรับผิดชอบ</span></li>
+                    <li class="flex gap-3 items-center"><span class="text-emerald-500 font-bold text-xl">✓</span> <span>พร้อมเรียนรู้และปฏิบัติตามกฎระเบียบ</span></li>
+                    <li class="flex gap-3 items-center"><span class="text-emerald-500 font-bold text-xl">✓</span> <span>มีทักษะในการสื่อสารดีเยี่ยม</span></li>
+                    <li class="flex gap-3 items-center"><span class="text-emerald-500 font-bold text-xl">✓</span> <span>(IC) มีถิ่นที่อยู่ในเมืองไม่ต่ำกว่า 15 วัน</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="glass-panel p-10 rounded-3xl shadow-2xl border-t-8 border-emerald-900 relative overflow-hidden">
+            <div class="absolute -top-32 -left-32 w-64 h-64 bg-emerald-600/10 rounded-full blur-3xl"></div>
+            <div class="relative z-10 space-y-8">
+                <div class="text-center">
+                    <h2 class="text-3xl font-black text-white italic uppercase tracking-tighter glow-emerald">Online Application Form</h2>
+                    <p class="text-slate-500 text-xs uppercase tracking-[0.3em] mt-1">LSPD Human Resources Division Terminal</p>
+                </div>
+
+                <form id="recruitForm" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">ชื่อ-นามสกุล IC (Name)</label>
+                            <input type="text" id="icName" required class="input-style w-full p-4 rounded-xl text-white outline-none placeholder:text-slate-700" placeholder="ระบุชื่อ IC ของคุณ">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">เบอร์โทรศัพท์ / CID (Contact)</label>
+                            <input type="text" id="contact" required class="input-style w-full p-4 rounded-xl text-white outline-none placeholder:text-slate-700" placeholder="000-0000 / เลข CID">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">Discord ID (OOC Contact)</label>
+                        <input type="text" id="discordId" required class="input-style w-full p-4 rounded-xl text-white outline-none placeholder:text-slate-700" placeholder="ชื่อDiscord#0000">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">ทำไมถึงอยากร่วมทีม LSPD?</label>
+                        <textarea id="reason" required rows="5" class="input-style w-full p-4 rounded-xl text-white outline-none placeholder:text-slate-700" placeholder="อธิบายเหตุผลของท่านโดยละเอียด..."></textarea>
+                    </div>
+                    
+                    <div class="bg-emerald-950/30 border border-emerald-900/50 p-4 rounded-xl">
+                        <p class="text-[11px] text-emerald-400 leading-relaxed uppercase tracking-wider font-light">
+                            ⚠️ การกดส่งใบสมัครถือว่าท่านยอมรับเงื่อนไขและระเบียบการของ LSPD ทุกประการ การให้ข้อมูลเท็จจะถูกตัดสิทธิ์ทันที
+                        </p>
+                    </div>
+
+                    <button type="submit" id="submitBtn" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-black py-5 rounded-2xl transition-all shadow-lg shadow-emerald-900/30 transform active:scale-[0.98] uppercase tracking-[0.2em] flex items-center justify-center gap-3">
+                        <span>ยื่นใบสมัครออนไลน์ (Submit)</span>
+                        <span class="text-xl">🚀</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <footer class="mt-16 py-10 text-center border-t border-slate-900 w-full relative z-10">
+            <p class="text-[10px] text-slate-700 uppercase tracking-[0.5em] font-bold">LSPD CENTRAL COMMAND TERMINAL | HR Recruitment v1.0</p>
+        </footer>
+    </div>
+
+    <script>
+        const discordWebhookUrl = "https://discord.com/api/webhooks/1481782188667043953/VFJ-Cg6UwNK_Fwn_u7LISXfKO8Smtf0fQgY2MiXpppU_vXDklarIHikePuiUXFlMzBiY"; 
+
+        document.getElementById('recruitForm').onsubmit = async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            const originalText = btn.innerHTML;
+            
+            btn.innerHTML = '<span class="animate-spin text-xl">🌀</span> กำลังประมวลผล...';
+            btn.disabled = true;
+
+            const payload = {
+                embeds: [{
+                    title: "🟢 มีใบสมัครเจ้าหน้าที่ใหม่ (Recruitment Form)",
+                    color: 1022641,
+                    fields: [
+                        { name: "👤 ผู้สมัคร IC", value: document.getElementById('icName').value, inline: true },
+                        { name: "📞 CID / ติดต่อ", value: document.getElementById('contact').value, inline: true },
+                        { name: "🎮 Discord OOC", value: document.getElementById('discordId').value, inline: false },
+                        { name: "📝 เหตุผล", value: document.getElementById('reason').value, inline: false }
+                    ],
+                    timestamp: new Date().toISOString(),
+                    footer: { text: "LSPD Human Resources" }
+                }]
+            };
+
+            try {
+                const response = await fetch(discordWebhookUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                
+                if (response.ok) {
+                    alert("✅ ส่งใบสมัครสำเร็จ! ทีม HR จะดำเนินการตรวจสอบโดยเร็วที่สุด");
+                    document.getElementById('recruitForm').reset();
+                } else { throw new Error(); }
+            } catch (err) {
+                alert("❌ เกิดข้อผิดพลาด โปรดตรวจสอบการเชื่อมต่อ");
+            } finally {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
+        };
+    </script>
+</body>
+</html>

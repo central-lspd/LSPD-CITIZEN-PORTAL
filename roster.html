@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LSPD | Official Roster</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Kanit', sans-serif; background: radial-gradient(circle, #0f172a 0%, #020617 100%); }
+        .glass-panel { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(59, 130, 246, 0.1); }
+        .glow-blue { text-shadow: 0 0 10px rgba(59, 130, 246, 0.5); }
+        .officer-card { 
+            background: rgba(15, 23, 42, 0.6); 
+            backdrop-filter: blur(10px); 
+            border: 1px solid rgba(71, 85, 105, 0.2); 
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+        }
+        .officer-card:hover { 
+            transform: translateY(-3px) scale(1.01); 
+            border-color: rgba(59, 130, 246, 0.5); 
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.15); 
+        }
+        .input-style { background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(71, 85, 105, 0.5); transition: all 0.3s; }
+        .input-style:focus { border-color: #3b82f6; box-shadow: 0 0 15px rgba(59, 130, 246, 0.2); outline: none; }
+        .glitch-effect { font-family: 'JetBrains Mono', monospace; }
+    </style>
+</head>
+<body class="text-slate-200 min-h-screen flex flex-col items-center">
+
+    <div class="max-w-6xl w-full py-12 px-4 flex flex-col h-full">
+        <header class="flex flex-col md:flex-row justify-between items-center mb-10 gap-6 border-b border-slate-800 pb-8 relative overflow-hidden glass-panel rounded-3xl p-6 shadow-2xl">
+            <div class="absolute -top-24 -right-24 w-48 h-48 bg-blue-600/10 rounded-full blur-3xl"></div>
+            
+            <div class="flex items-center gap-5 text-center md:text-left relative z-10">
+                <img src="LSPD.webp" alt="LSPD Logo" class="w-16 mx-auto md:mx-0 opacity-80 filter grayscale hover:grayscale-0 transition-all duration-500">
+                <div>
+                    <h1 class="text-3xl font-black text-white italic uppercase glitch-effect tracking-tighter glow-blue">OFFICIAL ROSTER</h1>
+                    <p class="text-slate-500 text-xs uppercase tracking-[0.3em] mt-1">LSPD PERSONNEL DATABASE</p>
+                </div>
+            </div>
+            <a href="index.html" class="bg-slate-800 hover:bg-slate-700 text-white px-6 py-3 rounded-2xl text-sm transition-all border border-slate-700 flex items-center gap-2 active:scale-95 shadow-lg relative z-10">
+                🏠 กลับหน้าหลัก
+            </a>
+        </header>
+
+        <div class="mb-10 w-full relative z-10">
+            <input type="text" id="searchInput" onkeyup="filterRoster()" placeholder="🔍 ค้นหาชื่อเจ้าหน้าที่ หรือCallsSign..." 
+                   class="input-style w-full p-5 rounded-2xl text-white outline-none placeholder:text-slate-700 font-light tracking-wide text-lg shadow-inner">
+        </div>
+
+        <main class="flex-grow w-full relative z-10">
+            <div id="roster-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="col-span-full text-center py-24 flex flex-col items-center gap-4 text-slate-600 animate-pulse">
+                    <span class="animate-spin text-5xl">🌀</span>
+                    <p class="text-xl italic font-light tracking-tight">กำลังดึงข้อมูลทำเนียบจากฐานข้อมูลกลาง...</p>
+                </div>
+            </div>
+        </main>
+
+        <footer class="mt-20 py-10 text-center border-t border-slate-900 w-full relative z-10">
+            <p class="text-[10px] text-slate-700 uppercase tracking-[0.5em] font-bold">LSPD CENTRAL COMMAND TERMINAL | personnel Data v2.0</p>
+        </footer>
+    </div>
+
+    <script>
+        // ใช้ Script URL เดิมของ Chief
+        const scriptUrl = "https://script.google.com/macros/s/AKfycbyKGq68gsatplIJPuc-_CkYVSSkOkVTlnJYtWU1HTL0A-euExbxrnrXsCq_ucspjVVf/exec";
+
+        async function loadRoster() {
+            try {
+                // เรียกข้อมูลจาก Google Apps Script
+                const response = await fetch(`${scriptUrl}?action=getRoster`);
+                
+                // ตรวจสอบว่าได้ข้อมูลจริงหรือไม่
+                if (!response.ok) throw new Error();
+
+                const officers = await response.json();
+                const container = document.getElementById('roster-container');
+                
+                // เคลียร์ Loading
+                container.innerHTML = '';
+
+                if (officers.length === 0) {
+                    container.innerHTML = '<p class="col-span-full text-center py-20 text-slate-500 italic font-light">ไม่พบรายชื่อเจ้าหน้าที่ปฏิบัติงานในขณะนี้</p>';
+                    return;
+                }
+
+                // วนลูปสร้างการ์ดเจ้าหน้าที่
+                officers.forEach(off => {
+                    container.innerHTML += `
+                        <div class="officer-card p-6 rounded-3xl flex items-center gap-5 shadow-2xl relative overflow-hidden">
+                            <div class="absolute -top-10 -right-10 w-24 h-24 bg-blue-500/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500"></div>
+                            
+                            <div class="w-20 h-20 bg-blue-600/10 rounded-full flex items-center justify-center text-4xl border border-blue-500/20 group-hover:border-blue-500 transition relative z-10">
+                                👮‍♂️
+                            </div>
+                            <div class="relative z-10 flex-grow">
+                                <h3 class="font-bold text-xl text-white tracking-tight">${off.name || 'ไม่ระบุ'}</h3>
+                                <p class="text-blue-500 text-sm font-semibold tracking-wide glow-blue">${off.rank || '-'}</p>
+                                <p class="text-slate-500 text-[11px] uppercase tracking-widest mt-1 font-light border border-slate-800 inline-block px-2 py-1 rounded">${off.division || 'General Duty'}</p>
+                            </div>
+                        </div>
+                    `;
+                });
+            } catch (error) {
+                // แสดงผล Error สวยๆ
+                document.getElementById('roster-container').innerHTML = `
+                    <div class="col-span-full text-center py-20 text-red-500 bg-red-950/20 rounded-3xl border border-red-900/50 p-6 shadow-xl flex flex-col items-center gap-4">
+                        <span class="text-5xl">❌</span>
+                        <h4 class="text-2xl font-black italic glitch-effect uppercase glow-red tracking-tighter">ERROR: CONNECTION FAILED</h4>
+                        <p class="text-slate-400 font-light text-sm max-w-md mx-auto">ไม่สามารถเชื่อมต่อฐานข้อมูล Personnel Database ได้ โปรดตรวจสอบสถานะ Google Sheets หรือติดต่อ Chief of Police.</p>
+                    </div>`;
+                console.error('Connection Error:', error);
+            }
+        }
+
+        // ฟังก์ชันค้นหา (คงเดิม)
+        function filterRoster() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let cards = document.getElementsByClassName('officer-card');
+            for (let card of cards) {
+                let name = card.getElementsByTagName('h3')[0].innerText.toLowerCase();
+                // แสดงผลเป็น "flex" แทน "none" เมื่อค้นหาเจอ
+                card.style.display = name.includes(input) ? "flex" : "none";
+            }
+        }
+
+        // โหลดข้อมูลทันทีเมื่อเปิดหน้า
+        loadRoster();
+    </script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LSPD | Firearm License Guidelines & Application</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Kanit', sans-serif; background: radial-gradient(circle, #0f172a 0%, #020617 100%); }
+        .glass-panel { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(59, 130, 246, 0.1); }
+        .glow-blue { text-shadow: 0 0 10px rgba(59, 130, 246, 0.5); }
+        .glow-red { text-shadow: 0 0 10px rgba(239, 68, 68, 0.5); }
+        .input-style { background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(71, 85, 105, 0.5); transition: all 0.3s; }
+        .input-style:focus { border-color: #3b82f6; box-shadow: 0 0 15px rgba(59, 130, 246, 0.2); outline: none; }
+        .glitch-effect { font-family: 'JetBrains Mono', monospace; }
+    </style>
+</head>
+<body class="text-slate-300 min-h-screen p-6 flex flex-col items-center">
+
+    <div class="max-w-4xl w-full py-10">
+        <header class="flex flex-col md:flex-row justify-between items-center mb-10 gap-6 border-b border-slate-800 pb-8 relative overflow-hidden glass-panel rounded-3xl p-6 shadow-2xl">
+            <div class="absolute -top-24 -right-24 w-48 h-48 bg-blue-600/10 rounded-full blur-3xl"></div>
+            
+            <div class="flex items-center gap-5 text-center md:text-left relative z-10">
+                <img src="LSPD.webp" alt="LSPD Logo" class="w-16 mx-auto md:mx-0 opacity-80 filter grayscale hover:grayscale-0 transition-all duration-500">
+                <div>
+                    <h1 class="text-3xl font-black text-white italic uppercase glitch-effect tracking-tighter glow-blue">Firearm Division</h1>
+                    <p class="text-slate-500 text-xs uppercase tracking-[0.3em] mt-1">LSPD Guidelines & Application Terminal</p>
+                </div>
+            </div>
+            <a href="index.html" class="bg-slate-800 hover:bg-slate-700 text-white px-6 py-3 rounded-2xl text-sm transition-all border border-slate-700 flex items-center gap-2 active:scale-95 shadow-lg relative z-10">
+                🏠 กลับหน้าหลัก
+            </a>
+        </header>
+
+        <div class="glass-panel p-8 rounded-3xl shadow-2xl mb-8 relative overflow-hidden border-l-4 border-l-blue-600">
+            <div class="absolute -top-24 -right-24 w-48 h-48 bg-blue-600/10 rounded-full blur-3xl"></div>
+            
+            <div class="relative z-10 space-y-4">
+                <h2 class="text-2xl font-bold text-white flex items-center gap-3 glow-blue">🛡️ ใบอนุญาตนี้มีไว้ทำอะไร?</h2>
+                <p class="text-slate-400 text-sm leading-relaxed font-light">
+                    ใบอนุญาตพกพาอาวุธปืน (Concealed Carry Permit) มีหน้าที่ยืนยันว่าท่านเป็นบุคคลที่ผ่านการตรวจสอบประวัติและคุณสมบัติจาก LSPD แล้ว 
+                    <span class="text-blue-400 font-semibold">**อนุญาตให้พกพาเพื่อการป้องกันตัวหรือทรัพย์สินเท่านั้น**</span> ไม่ได้หมายความว่าท่านมีสิทธิ์ในการใช้อาวุธเพื่อก่อเหตุ หรือมีอำนาจเหนือกฎหมาย 
+                    หากตรวจพบการใช้ในทางที่ผิด จะถูกเพิกถอนทันทีโดยไม่มีข้อยกเว้น
+                </p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10 relative z-10">
+            <div class="glass-panel p-8 rounded-3xl border-t-4 border-t-emerald-600 shadow-2xl hover:border-emerald-500 transition-all">
+                <h3 class="font-bold text-xl text-emerald-400 mb-5 flex items-center gap-3">✅ อาวุธที่พกพาได้ (Allowed)</h3>
+                <ul class="text-sm text-slate-400 space-y-3 font-light">
+                    <li class="flex items-center gap-3"><span class="text-emerald-500">Pistol</span> <span>• ปืนพกขนาดเล็ก (Pistol / Combat Pistol)</span></li>
+                    <li class="flex items-center gap-3"><span class="text-emerald-500">Vintage</span> <span>• ปืนพกวินเทจ (Vintage Pistol)</span></li>
+                    <li class="flex items-center gap-3"><span class="text-emerald-500">Taser</span> <span>• เครื่องช็อตไฟฟ้า (Stun Gun) *ต้องมีใบอนุญาต</span></li>
+                </ul>
+            </div>
+            <div class="glass-panel p-8 rounded-3xl border-t-4 border-t-red-700 shadow-2xl hover:border-red-600 transition-all">
+                <h3 class="font-bold text-xl text-red-500 mb-5 flex items-center gap-3 glow-red">❌ อาวุธที่ห้ามพกพาเด็ดขาด (Denied)</h3>
+                <ul class="text-sm text-slate-400 space-y-3 font-light">
+                    <li class="flex items-center gap-3"><span class="text-red-600">Heavy</span> <span>• อาวุธสงครามทุกชนิด (SMG, Rifle, MG)</span></li>
+                    <li class="flex items-center gap-3"><span class="text-red-600">Shotgun</span> <span>• ปืนลูกซอง (Shotguns)</span></li>
+                    <li class="flex items-center gap-3"><span class="text-red-600">Explosive</span> <span>• อาวุธระเบิดและของมีคมขนาดใหญ่</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="glass-panel p-8 rounded-3xl shadow-2xl mb-12 relative overflow-hidden">
+            <div class="absolute -bottom-24 -left-24 w-48 h-48 bg-slate-600/10 rounded-full blur-3xl"></div>
+            
+            <div class="relative z-10 space-y-5">
+                <h2 class="text-2xl font-bold text-white flex items-center gap-3">📝 เงื่อนไขการขอรับใบอนุญาต (Requirements)</h2>
+                <ul class="text-sm text-slate-400 space-y-4 font-light">
+                    <li class="flex gap-4 items-center"><span class="text-blue-500 font-bold glitch-effect text-xl">1.</span> <span>ต้องมีอายุถิ่นที่อยู่ในเมืองไม่ต่ำกว่า 30 วัน</span></li>
+                    <li class="flex gap-4 items-center bg-slate-900/50 p-4 rounded-xl border border-slate-800"><span class="text-red-500 font-bold glitch-effect text-xl">2.</span> <span class="text-red-400 font-semibold underline glow-red">ต้องไม่มีประวัติอาชญากรรม (MDT) ในรอบ 7 วันที่ผ่านมา</span></li>
+                    <li class="flex gap-4 items-center"><span class="text-blue-500 font-bold glitch-effect text-xl">3.</span> <span>ต้องมีเหตุผลอันสมควรในการพกพา (เช่น ประกอบอาชีพเสี่ยงภัย)</span></li>
+                    <li class="flex gap-4 items-center"><span class="text-blue-500 font-bold glitch-effect text-xl">4.</span> <span>ค่าธรรมเนียมการทำใบอนุญาต [ระบุราคา] (ชำระเมื่ออนุมัติ)</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="glass-panel p-10 rounded-3xl shadow-2xl border-t-8 border-blue-900 relative overflow-hidden">
+            <div class="absolute -top-32 -left-32 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl"></div>
+            
+            <div class="relative z-10 space-y-8">
+                <div class="text-center">
+                    <h2 class="text-3xl font-black text-white italic uppercase glitch-effect tracking-tighter glow-blue">Online Application</h2>
+                    <p class="text-slate-500 text-xs uppercase tracking-[0.3em] mt-1">LSPD Firearm Division Terminal</p>
+                </div>
+
+                <form id="licenseForm" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">ชื่อ-นามสกุลจริง (Name)</label>
+                            <input type="text" id="name" required class="input-style w-full p-4 rounded-xl text-white outline-none placeholder:text-slate-700" placeholder="ระบุชื่อ-นามสกุลของคุณ">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">เบอร์โทรศัพท์ / เลข CID (Contact)</label>
+                            <input type="text" id="contact" required class="input-style w-full p-4 rounded-xl text-white outline-none placeholder:text-slate-700" placeholder="000-0000 / เลข CID">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">รายละเอียดเหตุผลความจำเป็น (Reason)</label>
+                        <textarea id="reason" required rows="5" class="input-style w-full p-4 rounded-xl text-white outline-none placeholder:text-slate-700" placeholder="อธิบายเหตุผลของท่านโดยละเอียด..."></textarea>
+                    </div>
+                    
+                    <div class="bg-blue-950/30 border border-blue-900/50 p-4 rounded-xl">
+                        <p class="text-[11px] text-blue-400 leading-relaxed uppercase tracking-wider font-light">
+                            ⚠️ การกดส่งคำร้องถือว่าท่านยอมรับเงื่อนไขและระเบียบการพกพาอาวุธของเมือง Los Santos ทุกประการ การให้ข้อมูลเท็จมีโทษตามกฎหมาย
+                        </p>
+                    </div>
+
+                    <button type="submit" id="submitBtn" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-black py-5 rounded-2xl transition-all shadow-lg shadow-blue-900/30 transform active:scale-[0.98] uppercase tracking-[0.2em] flex items-center justify-center gap-3">
+                        <span>ยืนยันการส่งคำร้อง</span>
+                        <span class="text-xl">🚀</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <footer class="mt-16 py-10 text-center border-t border-slate-900 w-full relative z-10">
+            <p class="text-[10px] text-slate-700 uppercase tracking-[0.5em] font-bold">LSPD CENTRAL COMMAND TERMINAL | Firearm Division v1.0</p>
+        </footer>
+    </div>
+
+    <script>
+        const scriptUrl = "https://script.google.com/macros/s/AKfycbyKGq68gsatplIJPuc-_CkYVSSkOkVTlnJYtWU1HTL0A-euExbxrnrXsCq_ucspjVVf/exec"; 
+
+        document.getElementById('licenseForm').onsubmit = async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            const originalText = btn.innerHTML;
+            
+            // แสดงสถานะการส่ง
+            btn.innerHTML = '<span class="animate-spin text-xl">🌀</span> กำลังประมวลผลเอกสาร...';
+            btn.disabled = true;
+
+            const data = {
+                // เพิ่ม action เพื่อบอกให้ Apps Script รู้ว่าต้องบันทึกลง Sheet ไหน (ถ้ามีการตั้งค่าไว้)
+                action: "submitLicense", 
+                citizenName: document.getElementById('name').value,
+                contact: document.getElementById('contact').value,
+                complaintDetails: document.getElementById('reason').value // ส่งค่าเหตุผลไปในตัวแปร details เดิม
+            };
+
+            try {
+                // ส่งข้อมูล (ใช้โหมดปกติเพื่อรับผลสำเร็จ)
+                const response = await fetch(scriptUrl, {
+                    method: 'POST',
+                    body: JSON.stringify(data)
+                });
+                
+                if (response.ok) {
+                    alert("✅ ส่งคำร้องสำเร็จ! โปรดรอเจ้าหน้าที่ตรวจสอบประวัติและแจ้งผลทาง Discord");
+                    document.getElementById('licenseForm').reset();
+                } else {
+                    throw new Error();
+                }
+            } catch (err) {
+                alert("❌ เกิดข้อผิดพลาดในการเชื่อมต่อเซิร์ฟเวอร์ โปรดลองใหม่อีกครั้ง");
+            } finally {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
+        };
+    </script>
+</body>
+</html>
