@@ -7,43 +7,57 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&family=JetBrains+Mono&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Kanit', sans-serif; background: radial-gradient(circle, #0f172a 0%, #020617 100%); }
-        
-        /* ลูกเล่นเรืองแสง (Glow Effect) */
-        .glow-blue { text-shadow: 0 0 10px rgba(59, 130, 246, 0.5); }
-        .glow-orange { text-shadow: 0 0 10px rgba(249, 115, 22, 0.5); }
-        .glow-amber { text-shadow: 0 0 10px rgba(245, 158, 11, 0.5); }
-        .glow-emerald { text-shadow: 0 0 10px rgba(16, 185, 129, 0.5); } /* สีใหม่สำหรับการรับสมัคร */
+        /* ปรับพื้นหลังให้เป็น Static เพื่อลดการทำงานของ GPU */
+        body { 
+            font-family: 'Kanit', sans-serif; 
+            background-color: #020617;
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+        }
 
-        /* Tactical Card Style */
+        /* เลเยอร์พื้นหลังแยกต่างหาก */
+        .bg-layer {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 0%, #0f172a 0%, #020617 100%);
+            z-index: -1;
+        }
+        
+        /* ลูกเล่นเรืองแสงที่เบาลง */
+        .glow-blue { text-shadow: 0 0 8px rgba(59, 130, 246, 0.4); }
+        .glow-orange { text-shadow: 0 0 8px rgba(249, 115, 22, 0.4); }
+        .glow-amber { text-shadow: 0 0 8px rgba(245, 158, 11, 0.4); }
+        .glow-emerald { text-shadow: 0 0 8px rgba(16, 185, 129, 0.4); }
+
+        /* Tactical Card Style: ตัด Blur ออกเพื่อความลื่น (Smooth) */
         .service-card { 
-            background: rgba(30, 41, 59, 0.6); 
-            backdrop-filter: blur(10px); 
+            background: rgba(30, 41, 59, 0.9); 
             border: 1px solid rgba(59, 130, 246, 0.1); 
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+            transition: transform 0.2s cubic-bezier(0.2, 0, 0.2, 1), border-color 0.2s, box-shadow 0.2s; 
+            will-change: transform; /* เตรียม GPU ให้พร้อม */
+            transform: translateZ(0); /* บังคับใช้ Hardware Acceleration */
         }
         
-        /* Hover Effect: เรืองแสงที่ขอบและขยายตัว */
         .service-card:hover { 
-            transform: translateY(-5px) scale(1.02); 
-            border-color: rgba(59, 130, 246, 0.5); 
-            box-shadow: 0 0 30px rgba(59, 130, 246, 0.15); 
+            transform: translateY(-5px) scale(1.01); 
+            border-color: rgba(59, 130, 246, 0.4); 
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5); 
         }
 
-        .service-card.complaint:hover { border-color: rgba(249, 115, 22, 0.5); box-shadow: 0 0 30px rgba(249, 115, 22, 0.15); }
-        .service-card.laws:hover { border-color: rgba(245, 158, 11, 0.5); box-shadow: 0 0 30px rgba(245, 158, 11, 0.15); }
-        .service-card.recruit:hover { border-color: rgba(16, 185, 129, 0.5); box-shadow: 0 0 30px rgba(16, 185, 129, 0.15); } /* สีใหม่สำหรับการรับสมัคร */
+        .service-card.complaint:hover { border-color: rgba(249, 115, 22, 0.4); }
+        .service-card.laws:hover { border-color: rgba(245, 158, 11, 0.4); }
+        .service-card.recruit:hover { border-color: rgba(16, 185, 129, 0.4); }
 
         .glitch-effect { font-family: 'JetBrains Mono', monospace; }
     </style>
 </head>
 <body class="text-slate-300 min-h-screen">
 
-    <header class="relative bg-slate-950/80 border-b border-slate-800 py-16 px-6 text-center shadow-2xl overflow-hidden">
-        <div class="absolute -top-20 -left-20 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl"></div>
-        
+    <div class="bg-layer"></div>
+
+    <header class="relative bg-slate-950/90 border-b border-slate-800 py-16 px-6 text-center shadow-2xl">
         <div class="relative z-10">
-            <img src="LSPD.webp" alt="LSPD Logo" class="w-20 mx-auto mb-6 transition-all duration-500 hover:scale-105">
+            <img src="LSPD.webp" alt="LSPD Logo" class="w-20 mx-auto mb-6">
             <h1 class="text-4xl md:text-5xl font-black mb-2 text-white glitch-effect tracking-tighter uppercase italic glow-blue">LSPD CITIZEN PORTAL</h1>
             <p class="text-blue-500 text-sm uppercase tracking-[0.3em] font-light">Los Santos Police Department | Service & Protection</p>
         </div>
@@ -53,38 +67,37 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             
             <a href="complaint.html" class="service-card complaint p-8 rounded-3xl text-center group flex flex-col items-center border-t-4 border-t-orange-500">
-                <div class="text-6xl mb-6 group-hover:scale-110 transition-transform">🗣️</div>
-                <h2 class="text-2xl font-bold text-white mb-3 group-hover:text-orange-500 transition-colors glow-orange">ร้องเรียนเจ้าหน้าที่ตำรวจ</h2>
-                <p class="text-slate-500 text-sm font-light flex-grow">แจ้งเรื่องร้องเรียนหรือเบาะแสพฤติกรรมที่ไม่เหมาะสมของเจ้าหน้าที่ LSPD โดยเฉพาะ</p>
-                <span class="inline-block mt-6 text-orange-600 font-semibold text-xs uppercase tracking-widest border border-orange-900/50 px-4 py-2 rounded-full group-hover:bg-orange-500 group-hover:text-white transition-all">
+                <div class="text-6xl mb-6 transition-transform group-hover:scale-105">🗣️</div>
+                <h2 class="text-2xl font-bold text-white mb-3 glow-orange">ร้องเรียนเจ้าหน้าที่</h2>
+                <p class="text-slate-500 text-sm font-light flex-grow">แจ้งเรื่องร้องเรียนหรือเบาะแสพฤติกรรมที่ไม่เหมาะสมของเจ้าหน้าที่</p>
+                <span class="inline-block mt-6 text-orange-600 font-semibold text-xs uppercase tracking-widest border border-orange-900/50 px-4 py-2 rounded-full group-hover:bg-orange-500 group-hover:text-white transition-colors">
                     เข้าสู่ระบบร้องเรียน →
                 </span>
             </a>
 
-            <a href="https://central-lspd.github.io/lspd-citylaw/" target="_blank" class="service-card laws p-8 rounded-3xl text-center group flex flex-col items-center border-t-4 border-t-amber-500">
-                <div class="text-6xl mb-6 group-hover:scale-110 transition-transform">⚖️</div>
-                <h2 class="text-2xl font-bold text-white mb-3 group-hover:text-amber-500 transition-colors glow-amber">กฎหมายเมือง</h2>
+            <a href="https://central-lspd.github.io/LSPD-LAWS/" target="_blank" class="service-card laws p-8 rounded-3xl text-center group flex flex-col items-center border-t-4 border-t-amber-500">
+                <div class="text-6xl mb-6 transition-transform group-hover:scale-105">⚖️</div>
+                <h2 class="text-2xl font-bold text-white mb-3 glow-amber">กฎหมายเมือง</h2>
                 <p class="text-slate-500 text-sm font-light flex-grow">ตรวจสอบข้อกำหนด ค่าปรับ และบทลงโทษต่างๆ ของเมือง Los Santos</p>
-                
-                <div class="inline-block mt-6 text-amber-600 font-semibold text-xs uppercase tracking-widest border border-amber-900/50 px-4 py-2 rounded-full group-hover:bg-amber-500 group-hover:text-black transition-all">
+                <div class="inline-block mt-6 text-amber-600 font-semibold text-xs uppercase tracking-widest border border-amber-900/50 px-4 py-2 rounded-full group-hover:bg-amber-500 group-hover:text-black transition-colors">
                     อ่านข้อกฎหมาย →
                 </div>
             </a>
 
             <a href="recruit.html" class="service-card recruit p-8 rounded-3xl text-center group flex flex-col items-center border-t-4 border-t-emerald-600">
-                <div class="text-6xl mb-6 group-hover:scale-110 transition-transform">📝</div>
-                <h2 class="text-2xl font-bold text-white mb-3 group-hover:text-emerald-500 transition-colors glow-emerald">รับสมัครเจ้าหน้าที่</h2>
-                <p class="text-slate-500 text-sm font-light flex-grow">ร่วมเป็นส่วนหนึ่งของทีม LSPD ยื่นใบสมัครออนไลน์เพื่อก้าวสู่เส้นทางผู้พิทักษ์สันติราษฎร์</p>
-                <span class="inline-block mt-6 text-emerald-600 font-semibold text-xs uppercase tracking-widest border border-emerald-900/50 px-4 py-2 rounded-full group-hover:bg-emerald-500 group-hover:text-white transition-all">
+                <div class="text-6xl mb-6 transition-transform group-hover:scale-105">📝</div>
+                <h2 class="text-2xl font-bold text-white mb-3 glow-emerald">รับสมัครเจ้าหน้าที่</h2>
+                <p class="text-slate-500 text-sm font-light flex-grow">ร่วมเป็นส่วนหนึ่งของทีม LSPD ยื่นใบสมัครออนไลน์สู่เส้นทางผู้พิทักษ์</p>
+                <span class="inline-block mt-6 text-emerald-600 font-semibold text-xs uppercase tracking-widest border border-emerald-900/50 px-4 py-2 rounded-full group-hover:bg-emerald-500 group-hover:text-white transition-colors">
                     ยื่นใบสมัครออนไลน์ →
                 </span>
             </a>
 
             <a href="roster.html" class="service-card p-8 rounded-3xl text-center group flex flex-col items-center border-t-4 border-t-slate-600">
-                <div class="text-6xl mb-6 group-hover:scale-110 transition-transform">👮‍♂️</div>
-                <h2 class="text-2xl font-bold text-white mb-3 group-hover:text-slate-400 transition-colors">ทำเนียบตำรวจ</h2>
+                <div class="text-6xl mb-6 transition-transform group-hover:scale-105">👮‍♂️</div>
+                <h2 class="text-2xl font-bold text-white mb-3">ทำเนียบตำรวจ</h2>
                 <p class="text-slate-500 text-sm font-light flex-grow">ตรวจสอบรายชื่อ ยศ และสังกัดของเจ้าหน้าที่ตำรวจ LSPD ทั้งหมด</p>
-                <span class="inline-block mt-6 text-slate-400 font-semibold text-xs uppercase tracking-widest border border-slate-700 px-4 py-2 rounded-full group-hover:bg-slate-700 group-hover:text-white transition-all">
+                <span class="inline-block mt-6 text-slate-400 font-semibold text-xs uppercase tracking-widest border border-slate-700 px-4 py-2 rounded-full group-hover:bg-slate-700 group-hover:text-white transition-colors">
                     ตรวจสอบรายชื่อ →
                 </span>
             </a>
@@ -92,18 +105,16 @@
         </div>
 
         <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="bg-blue-950/50 border border-blue-900/50 text-white p-8 rounded-2xl flex items-center gap-6 shadow-xl relative overflow-hidden group">
-                <div class="absolute -top-10 -right-10 w-24 h-24 bg-blue-600/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500"></div>
+            <div class="bg-blue-950/40 border border-blue-900/40 text-white p-8 rounded-2xl flex items-center gap-6 shadow-lg">
                 <div class="text-4xl text-blue-500 glow-blue">📞</div>
-                <div class="relative z-10">
+                <div>
                     <h4 class="font-bold text-lg">สายด่วนฉุกเฉิน (Emergency)</h4>
-                    <p class="text-sm text-blue-300 font-light mt-1">โทร <span class="font-bold text-white glitch-effect text-xl">911</span> สำหรับเหตุด่วนเหตุร้ายตลอด 24 ชั่วโมง</p>
+                    <p class="text-sm text-blue-300 font-light mt-1">โทร <span class="font-bold text-white glitch-effect text-xl">911</span> ตลอด 24 ชั่วโมง</p>
                 </div>
             </div>
-            <div class="bg-slate-900/50 border border-slate-800 text-white p-8 rounded-2xl flex items-center gap-6 shadow-xl relative overflow-hidden group">
-                <div class="absolute -top-10 -right-10 w-24 h-24 bg-slate-600/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500"></div>
+            <div class="bg-slate-900/40 border border-slate-800 text-white p-8 rounded-2xl flex items-center gap-6 shadow-lg">
                 <div class="text-4xl text-slate-500">📍</div>
-                <div class="relative z-10">
+                <div>
                     <h4 class="font-bold text-lg">ที่ตั้งสถานีหลัก (HQ)</h4>
                     <p class="text-sm text-slate-400 font-light mt-1">Mission Row Police Station, Los Santos</p>
                 </div>
@@ -111,7 +122,7 @@
         </div>
     </main>
 
-    <footer class="text-center py-10 text-slate-700 text-xs uppercase tracking-[0.5em] border-t border-slate-900 mt-10">
+    <footer class="text-center py-10 text-slate-700 text-[10px] uppercase tracking-[0.5em] border-t border-slate-900 mt-10">
         <p>© 2026 Los Santos Police Department - Service Terminal</p>
     </footer>
 
